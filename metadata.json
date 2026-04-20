@@ -1,0 +1,8 @@
+{
+  "name": "WildSnap",
+  "description": "An AI-powered wildlife companion that identifies wild animals.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ]
+}

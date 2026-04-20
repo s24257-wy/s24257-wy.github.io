@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  
+  --color-wy-blue: #004898;
+  --color-wy-red: #D7001B;
+  
+  --radius-apple: 2.5rem;
+}
+
+@layer base {
+  body {
+    @apply bg-black text-white antialiased selection:bg-wy-blue/30 m-0 p-0 overflow-hidden h-full;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "case";
+    /* Support for mobile safe areas */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  html {
+    @apply h-full;
+    /* Prevent overscroll bounce on iOS */
+    overscroll-behavior-y: none;
+  }
+}
+
+@layer components {
+  .apple-glass {
+    @apply bg-white/[0.03] backdrop-blur-[40px] border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.8)];
+  }
+  
+  .apple-glass-bright {
+    @apply bg-white/[0.08] backdrop-blur-[50px] border border-white/20 shadow-2xl;
+  }
+
+  .apple-nav {
+    @apply bg-black/40 backdrop-blur-[60px] border-t border-white/5;
+    /* Extra padding for home indicator on iOS */
+    padding-bottom: calc(env(safe-area-inset-bottom) + 1.5rem);
+  }
+
+  .liquid-mesh {
+    @apply fixed inset-0 -z-10 overflow-hidden bg-black;
+  }
+
+  .liquid-mesh::before {
+    content: '';
+    @apply absolute inset-0 opacity-40;
+    background: 
+      radial-gradient(at 0% 0%, hsla(212, 100%, 30%, 1) 0, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(352, 100%, 42%, 1) 0, transparent 50%),
+      radial-gradient(at 100% 100%, hsla(212, 100%, 20%, 1) 0, transparent 50%),
+      radial-gradient(at 0% 100%, hsla(352, 100%, 30%, 1) 0, transparent 50%),
+      radial-gradient(at 50% 50%, hsla(212, 100%, 15%, 1) 0, transparent 100%);
+    filter: blur(100px);
+  }
+
+  .liquid-blob-v2 {
+    @apply absolute rounded-full mix-blend-screen filter blur-[120px] opacity-20 animate-pulse pointer-events-none;
+  }
+}
+
+@keyframes float-v2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+.animate-float-v2 {
+  animation: float-v2 12s ease-in-out infinite;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-white/40;
+}
+
+/* Custom Leaflet Popup Styles */
+.leaflet-popup-content-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 2rem !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  width: auto !important;
+}
+
+.leaflet-popup-tip-container {
+  display: none !important;
+}
+
+.leaflet-container {
+  font-family: inherit !important;
+}
